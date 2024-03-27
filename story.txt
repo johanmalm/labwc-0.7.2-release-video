@@ -1,0 +1,207 @@
+# Introduction
+
+TODO: [Some graphic]
+
+## What is a Wayland Compositor
+
+A Wayland Compositor is a program which:
+- Coordinates the input and output of its clients (applications) to and from
+  the rest of the Operating System.
+- Talks to the clients via a protocol called Wayland
+- Provides applications with off-screen buffers for window surfaces,
+  composites these buffers into an image representing the screen and
+  writes the result into the display memory.
+- Optionally applies decorations and effects as part of the compositioning
+  process.
+
+The role of the Wayland Compositor equates to - in the world of X11 - the scope
+of the Display Manager (the X.Org Server), the Window Manager (e.g. Openbox)
+and the Compositor (e.g. picom).
+
+# Status Report
+
+## labwc
+
+Let us describe what has happened since the last release video at version 0.6.0
+in Nov 2022:
+
+- The code base has nearly doubled in size from 10k lines to 20k (in `src/`)
+- We have 866 new commits submitted by 56 code contributors
+  ...out of which ten contributors submitted >= 10 patches
+
+//TODO: Add LOC graph?
+// https://github.com/labwc/labwc-loc-graph/blob/main/graph.png
+
+The great news is that there is now a set of pretty active developers and some
+are very competent which makes for a good team with peer-review, etc. (not
+including myself in that verdict btw). Also, the wlroots crowd are extremely
+competent including people who contribute to the Linux kernel, Wayland and
+upstream protocols.
+
+// TODO... or a bit more toned down :)
+The 'core team' now has half a dozen active devs/maintainers who author and
+peer-review code. And of course, we have many more who evaluate ideas, test
+patches and so on. A big thanks to you all!
+
+We have four devs with full commit access and who operate a policy as described
+[here](/link/to/policy)
+
+We have grown into a 10ish week release cycle.
+
+// TODO: Consider screenshot of the ganttplay roadmap
+
+## wlroots
+
+Well, it's not really for us to give us a status report on behalf of wlroots,
+but we want to say a big thank you to that team for the amazing work they are
+doing. And needless to say, wlroots has come long way in the last 18 months too.
+
+# How mature is the compositor?
+
+In our work we focus a lot on stability and code cleanliness, and feel that it is
+reasonably solid in that regard.
+
+In terms of answering the question, let us describe what labwc feels like in
+comparison with using X.Org Server Window Managers like openbox and xfwm4?
+
+In brief, it is simply different; somethings are better and some are worse.
+
+## Normal applications
+
+- Normal Qt and GTK clients work great using their Wayland backends via
+  xdg-shell plus a bunch of upstream protocols.
+- We use server side decoration supporting openbox theme specifiation with
+  a few mod cons such as rounded top corners and SVG/PNG icons. Qt applications
+  willingly negotiate this, whereas GTK sometimes do not. You can optionally
+  default to CSD if you prefer.
+- We support applications using an X backend using XWayland. For these
+  applications we also using server-side decoration.
+
+// TODO: Consider some screenshots from `waycheck`
+// TODO: Consider link to scope document
+//         - https://github.com/labwc/labwc-scope/
+
+## Desktop Environment Components
+
+It is quite a different story with desktop components such as panels, menus,
+launchers and session locks.
+
+For some years this has largely consisted of independent tools using the
+wlr-layer-shell protocol. These were either based on GTK3 or written from
+scratch with libraries like cairo/pango.
+
+// TODO: Image of Waybar and bemenu?
+
+In the last 18 months we have increasingly worked with members of the Xfce,
+LXQt and Raspbian teams focusing on supporting their respective sessions and
+desktop components.
+
+For example, xfce4-panel supports the wlr-layer-shell &amp; wlr-foreign-toplevel
+protocols, and works well, but not all features are supported (panels can be
+complicated things!)
+
+With Qt6.5 the wlr-layer-shell protocol is supports with QWidgets and popup
+menus, which is a big step up from before where only QRasterWindow worked.
+So, an eco-system is now in place for the core functionality of their desktop
+environment components.
+
+// TODO: Videos or screenshots of
+//         - xfce4-panel
+//         - xfdesktop
+//         - pcmanfm-qt --desktop
+//         - lxqt-panel
+//         - lxqt-leave
+//         - lxqt-runner
+//         - raspberri pi's panel + `pcmanfm --desktop`
+
+## What is missing?
+
+Some things are not yet on par with X.Org Server Window Managers - not because
+they would be that hard to implement as bespoke, independent implementations
+but because it takes time to do it in a consistent, maintainable way which is
+ultimately more important for sustainable software (in our opinon).
+
+1. Workspace protocol (so you can't control windows relative to workspaces from a panel)
+
+2. Keyboard layout IPC (so you can't see what the active keyboard layout is from a panel or similar)
+
+3. Window thumnails (so you can't see on-hover images of windows in panels) -
+because natively clients cannot see the screen content of other clients like on
+X.Org Server.
+
+3. Most openbox features are covered (that 99% of users know & care about
+anyway), but there are some exceptions which people might miss if they were to
+move across today:
+	- Titlebar layout (ability to change position of button in titlebar)
+	- Button-press images, etc.
+
+4. Nvidia is supported since version 495, but labwc may not work with older
+   drivers.
+
+5. X11 clients are supported to like 99% but if you use bespoke, non-toolkit
+clients you may get some odd behaviour (e.g. avoid xeyes and tint2). If you use
+clients that have been designed for Wayland (like Waybar), then everything
+works great.
+
+	a. There isn't yet a mainstream Wayland backend for Java, so if you use
+	   so if you use NetBeans, Intellij and similar you may experience some
+	   glitches (because XWayland is hard to get 100% right).
+
+	b. Same with tk, for example used by gitk.
+
+## What is better?
+
+1. Tablet and touch support
+2. Scaling and HiDPI
+3. Output management
+4. VSync
+5. If you use GTK and Qt applications, support is more likely for Wayland going
+   forward.
+
+# New features
+
+It is pretty hard to show-case a compositor, because unless it has some
+eye-candy type feature most of its value lies in things under the bonnet that
+you just expect to work.
+
+VIDEOS:
+
+- Pipemenus
+	- Show both keyboard + mouse events
+
+- Input methods
+
+- Window gymnastics:
+	- Window-edge resistance
+	- Attractive snapping (negative strengths)
+	- Automatic placement policy
+	- MoveToEdge
+		- `snapWindows` option
+		- movement to adjacent outputs
+	- GrowToEdge, ShrinkToEdge
+	- Make corners square on maximize
+	- Disable border on maximize
+
+- Decoration
+	- Titlebar hover icons
+	- png/svg titlebar buttons
+	- ToggleDecoration
+	- ToggleShade
+
+- Resize indicator (using XWayland terminal)
+
+- Regions
+
+- Window Switcher
+	- With clients on different workspaces
+	- Use some non-default settings
+		- osd.window-switcher.width
+		- osd.window-switcher.padding
+		- osd.window-switcher.item.padding.x
+		- osd.window-switcher.item.padding.y
+		- osd.window-switcher.item.active.border.width
+
+- Drop shadows (if ready in time)
+
+- Snap overlay (if ready in time)
+
