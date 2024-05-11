@@ -1,0 +1,352 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>labwc</title>
+  <link rel="stylesheet" href="reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="reveal.js/dist/theme/black.css">
+  <link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css">
+
+  <style>
+    body {
+	--color-bg: #0d1117;
+	--color-hl: #333;
+	--color-fg: #c9d1d9;
+	--color-link: #ffbce3;
+	--color-subtle: #555;
+	--color-yellow: #f0d70f;
+	--color-red: #d02f90;
+	--pal1: #262A85;
+	--pal2: #29488F;
+	--pal3: #285577;
+	--pal4: #297E8F;
+	--pal5: #26857B;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <section data-background="#0d1117">
+        <img src="img/labwc.png" width="200" height="200" />
+      </section>
+
+      <section data-background="#0d1117" data-autoslide="1500">
+	<p style="color: var(--color-fg);">labwc 0.7.2</p>
+      </section>
+
+      <section data-background="#0d1117" data-autoslide="3000">
+	      <p style="color: var(--color-fg);">
+          With thanks to the <b>wlroots</b> team.<br />
+          And all who have contributed to labwc.
+        </p>
+      </section>
+
+      <section data-background="#000000" data-background-video="video/100-intro.mkv"
+        data-autoslide="34000">
+      </section>
+
+      <section data-background="#0d1117" data-autoslide="6000">
+        <p align="left" style="font-size: 28px;">You have just seen:</p>
+        <ul  align="left" style="font-size: 28px;">
+          <li>pcmanfm-qt --desktop (2.0.0) and xfce4-panel (4.19.3) running natively under Wayland
+            without window rules</li>
+          <li>Some desktop clients using server side decoration</li>
+          <li>labwc-tweaks which is the compositor settings tool using Qt (note: separate client -
+            not part of the compositor)</li>
+        </ul>
+      </section>
+
+      <!-- Compositor Definition -->
+
+      <section data-background="#0d1117" data-autoslide="7000">
+        <p align="left" style="font-size: 28px;">Let's start with the basics. A Wayland Compositor is a program which:</p>
+        <ul  align="left" style="font-size: 28px;">
+          <li>Coordinates the input and output of its clients (applications) to and from the rest of the Operating System.</li>
+          <li>Talks to the clients via a protocol called Wayland.</li>
+          <li>Provides applications with off-screen buffers for window surfaces, composites these
+            buffers into an image representing the screen and writes the result into the display
+            memory.</li>
+          <li>Optionally applies decorations and effects as part of the compositioning process.</li>
+        </ul>
+        <p align="left" style="font-size: 28px;">
+          The role of the Wayland Compositor equates to - in the world of X11 - the scope
+          of the Display Manager (the X.Org Server), the Window Manager (e.g. Openbox) and
+          the Compositor (e.g. picom).
+        </p>
+      </section>
+
+      <!-- Status Report -->
+
+      <section data-background="#0d1117" data-autoslide="7000">
+        <p align="left" style="font-size: 28px;">
+Let us describe what has happened since the last release video at version 0.6.0
+in Nov 2022:
+        </p>
+        <ul  align="left" style="font-size: 28px;">
+          <li>
+The code base has more than doubled in size from 10k lines to 21k (in `src/`)
+          </li>
+          <li>
+We have 866 new commits submitted by 56 code contributors
+...out of which ten contributors submitted &gt;= 10 patches
+          </li>
+          <li>
+The 'core team' now has half a dozen active devs/maintainers who author and
+peer-review code. And of course, we have many more who evaluate ideas, test
+patches and so on. A big thanks to you all!
+          </li>
+          <li>
+We have five devs with full commit access
+          </li>
+          <li>
+We have grown into a 10ish week release cycle including a 3-week cool-down
+period
+          </li>
+        </ul>
+      </section>
+
+      <section data-background="#0d1117" data-autoslide="4000">
+        <img src="img/graph.png">
+      </section>
+
+      <section data-background="#0d1117" data-autoslide="4000">
+        <img src="img/Figure_1.png">
+      </section>
+
+      <!-- NEW FEATURES -->
+
+      <section data-background="#0d1117" data-autoslide="7000">
+        <p>
+It is pretty hard to show-case a compositor, because unless it has some
+eye-candy type feature most of its value lies in things under the bonnet that
+you just expect to work.<br />
+However, here follow some screencasts of features that
+feel right to demonstrate.
+        </p>
+      </section>
+
+      <!-- Screen Recordings of New Features -->
+
+      <section data-background="#0d1117" data-autoslide="4000">
+        <pre data-id="code-animation"><code class="hljs" data-trim>resistance.windowEdge: 20</code></pre>
+      </section>
+      <section data-background="#000000" data-background-video="video/200-win-edge-resistance.mkv"
+        data-autoslide="15000">
+      </section>
+
+      <section data-background="#0d1117" data-autoslide="4000">
+        <pre data-id="code-animation"><code class="hljs" data-trim>
+//Attractive Snapping
+resistance.windowEdge: -20
+        </code></pre>
+      </section>
+      <section data-background="#000000" data-background-video="video/201-attractive-snapping.mkv"
+        data-autoslide="9000">
+      </section>
+
+      <section data-background="#0d1117" data-autoslide="4000">
+        <pre data-id="code-animation"><code class="hljs" data-trim>
+placement.policy: "automatic"
+        </code></pre>
+      </section>
+      <section data-background="#000000" data-background-video="video/202-auto-placement.mkv"
+        data-autoslide="27000">
+      </section>
+
+      <section data-background="#0d1117" data-autoslide="4000">
+        <pre data-id="code-animation"><code class="hljs" data-trim>
+MoveToEdge action with snapWindows="true"
+        </code></pre>
+      </section>
+      <section data-background="#000000" data-background-video="video/203-movetoedge-snapwindows.mkv"
+        data-autoslide="15000">
+      </section>
+
+      <section data-background="#0d1117" data-autoslide="4000">
+        <pre data-id="code-animation"><code class="hljs" data-trim>
+Actions "GrowToEdge" and "ShrinkToEdge"
+        </code></pre>
+      </section>
+      <section data-background="#000000" data-background-video="video/204-growshrinktoedge.mkv"
+        data-autoslide="30000">
+      </section>
+
+      <section data-background="#0d1117" data-autoslide="4000">
+        <pre data-id="code-animation"><code class="hljs" data-trim>
+// Rounded corners and window borders disappear on maximize
+        </code></pre>
+      </section>
+      <section data-background="#000000" data-background-video="video/205-corners-square-on-max.mkv"
+        data-autoslide="17000">
+      </section>
+
+      <section data-background="#0d1117" data-autoslide="4000">
+        <pre data-id="code-animation"><code class="hljs" data-trim>
+// Titlebar supports xbm, png and svg icons
+        </code></pre>
+      </section>
+      <section data-background="#000000" data-background-video="video/206-hover-icons.mkv"
+        data-autoslide="8000">
+      </section>
+
+      <section data-background="#0d1117" data-autoslide="4000">
+        <pre data-id="code-animation"><code class="hljs" data-trim>
+Action "ToggleDecorations"
+        </code></pre>
+      </section>
+      <section data-background="#000000" data-background-video="video/207-toggle-deco.mkv"
+        data-autoslide="28000">
+      </section>
+
+      <section data-background="#0d1117" data-autoslide="4000">
+        <pre data-id="code-animation"><code class="hljs" data-trim>
+Action "ToggleShade"
+        </code></pre>
+      </section>
+      <section data-background="#000000" data-background-video="video/208-toggle-shade.mkv"
+        data-autoslide="13000">
+      </section>
+
+      <section data-background="#0d1117" data-autoslide="4000">
+        <pre data-id="code-animation"><code class="hljs" data-trim>
+// Separate vertical and horizontal maximize
+        </code></pre>
+      </section>
+      <section data-background="#000000" data-background-video="video/209-vert-horiz-maximize.mkv"
+        data-autoslide="13000">
+      </section>
+
+      <section data-background="#0d1117" data-autoslide="4000">
+        <pre data-id="code-animation"><code class="hljs" data-trim>
+// Snap overlay
+        </code></pre>
+      </section>
+      <section data-background="#000000" data-background-video="video/210-snap-overlay.mkv"
+        data-autoslide="10000">
+      </section>
+
+      <section data-background="#0d1117" data-autoslide="4000">
+        <pre data-id="code-animation"><code class="hljs" data-trim>
+// Input Method Editor (IME)
+        </code></pre>
+      </section>
+      <section data-background="#000000" data-background-video="video/300-input-method.gif"
+        data-autoslide="4500">
+      </section>
+
+      <section data-background="#0d1117" data-autoslide="4000">
+        <pre data-id="code-animation"><code class="hljs" data-trim>
+// Pipemenus (TBD)
+        </code></pre>
+      </section>
+
+      <section data-background="#0d1117" data-autoslide="4000">
+        <pre data-id="code-animation"><code class="hljs" data-trim>
+// Regions (TBD)
+        </code></pre>
+      </section>
+
+      <!-- Assessment of Maturity -->
+
+      <section data-background="#0d1117" data-autoslide="4000">
+        <p align="left" style="font-size: 28px;">
+How mature is the compositor?  To answer that, let us describe what labwc feels
+like in comparison with using X.Org Server Window Managers like openbox and
+xfwm4?
+        </p>
+      </section>
+
+      <section data-background="#0d1117" data-autoslide="4000">
+        <h2>Normal applications</h2>
+        <ul style="font-size: 28px;">
+          <li>Normal Qt and GTK clients work great using their Wayland backends via
+            xdg-shell plus a bunch of upstream protocols.</li>
+          <li>We use server side decoration supporting openbox theme specifiation with
+            a few mod cons such as rounded top corners and SVG/PNG icons. Qt applications
+            willingly negotiate this, whereas GTK sometimes do not. You can optionally
+            default to CSD if you prefer.</li>
+          <li>We support applications using an X backend using XWayland. For these
+            applications we also using server-side decoration.</li>
+        </p>
+      </section>
+
+      <section data-background="#0d1117" data-autoslide="4000">
+        <h2>Desktop Environment Components</h2>
+        <ul style="font-size: 26px;">
+          <li>
+It is quite a different story with desktop components such as panels, menus,
+launchers and session locks.
+          </li>
+          <li>
+For some years this has largely consisted of independent tools using the
+wlr-layer-shell protocol. These were either based on GTK3 or written from
+scratch with libraries like cairo/pango.
+          </li>
+          <li>
+In the last 18 months we have increasingly worked with members of the Xfce,
+LXQt and Raspbian teams focusing on supporting their respective sessions and
+desktop components.
+          </li>
+          <li>
+For example, xfce4-panel supports the wlr-layer-shell &amp; wlr-foreign-toplevel
+protocols, and works well, but not all features are supported (panels can be
+complicated things!)
+          </li>
+          <li>
+With Qt6.5 the wlr-layer-shell protocol is supports with QWidgets and popup
+menus, which is a big step up from before where only QRasterWindow worked.
+So, an eco-system is now in place for the core functionality of their desktop
+environment components.
+          </li>
+          <li>
+          </li>
+      </section>
+
+      <section data-background="#0d1117" data-autoslide="4000">
+        <pre data-id="code-animation"><code class="hljs" data-trim>
+// TODO: Videos or screenshots of
+//         - xfce4-panel
+//         - xfdesktop
+//         - pcmanfm-qt --desktop
+//         - lxqt-panel
+//         - lxqt-leave
+//         - lxqt-runner
+//         - raspberri pi's panel + `pcmanfm --desktop`
+        </code></pre>
+      </section>
+
+      <!-- THE END - WITH A THANK YOU -->
+      <section data-background="#0d1117">
+        <h2>Thank You</h2>
+	      <p>
+	  The following music was used for this media project:<br />
+	  Music: TBD<br />
+        </p>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="reveal.js/dist/reveal.js"></script>
+  <script src="reveal.js/plugin/notes/notes.js"></script>
+  <script src="reveal.js/plugin/markdown/markdown.js"></script>
+  <script src="reveal.js/plugin/highlight/highlight.js"></script>
+  <script>
+  Reveal.initialize({
+    controls: false,
+    progress: false,
+    transition: 'fade',
+    autoSlideStoppable: false,
+    hash: true,
+    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+  });
+  </script>
+</body>
+</html>
