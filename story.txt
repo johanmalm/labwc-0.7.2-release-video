@@ -164,6 +164,8 @@ It is pretty hard to show-case a compositor, because unless it has some
 eye-candy type feature most of its value lies in things under the bonnet that
 you just expect to work.
 
+Mention Window-rules
+
 VIDEOS:
 
 - Pipemenus
