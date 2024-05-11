@@ -46,7 +46,54 @@ in Nov 2022:
 
 Well, it's not really for us to give us a status report on behalf of wlroots,
 but we want to say a big thank you to that team for the amazing work they are
-doing. And needless to say, wlroots has come long way in the last 18 months too.
+doing.
+
+# New features
+
+It is pretty hard to show-case a compositor, because unless it has some
+eye-candy type feature most of its value lies in things under the bonnet that
+you just expect to work. However, here follow some screencasts of features that
+feel right to demonstrate.
+
+VIDEOS:
+
+- [x] Window gymnastics:
+	- Window-edge resistance
+	- Attractive snapping (negative strengths)
+	- Automatic placement policy
+	- MoveToEdge
+		- `snapWindows` option
+		- movement to adjacent outputs
+	- GrowToEdge, ShrinkToEdge
+	- Make corners square on maximize
+	- Disable border on maximize
+- [x] Decoration
+	- Titlebar hover icons
+	- png/svg titlebar buttons
+	- ToggleDecoration
+	- ToggleShade
+- [x] Vertical/Horizontal maximize
+- [x] Snap overlay
+- [x] Input methods
+- [ ] Pipemenus
+	- Show both keyboard + mouse events
+- [ ] Resize indicator (using XWayland terminal)
+- [ ] Regions
+
+
+The following could be without screencasts - just a mention.
+
+- Window-rules
+- Drop shadows (because already show in various other screen casts)
+- Window Switcher
+	- With clients on different workspaces
+	- Use some non-default settings
+		- osd.window-switcher.width
+		- osd.window-switcher.padding
+		- osd.window-switcher.item.padding.x
+		- osd.window-switcher.item.padding.y
+		- osd.window-switcher.item.active.border.width
+
 
 # How mature is the compositor?
 
@@ -144,55 +191,3 @@ works great.
 4. VSync
 5. If you use GTK and Qt applications, support is more likely for Wayland going
    forward.
-
-# New features
-
-It is pretty hard to show-case a compositor, because unless it has some
-eye-candy type feature most of its value lies in things under the bonnet that
-you just expect to work.
-
-Mention Window-rules
-
-VIDEOS:
-
-- Pipemenus
-	- Show both keyboard + mouse events
-
-- Input methods
-
-- Window gymnastics:
-	- Window-edge resistance
-	- Attractive snapping (negative strengths)
-	- Automatic placement policy
-	- MoveToEdge
-		- `snapWindows` option
-		- movement to adjacent outputs
-	- GrowToEdge, ShrinkToEdge
-	- Make corners square on maximize
-	- Disable border on maximize
-
-- Decoration
-	- Titlebar hover icons
-	- png/svg titlebar buttons
-	- ToggleDecoration
-	- ToggleShade
-
-- Vertical/Horizontal maximize
-- Snap overlay
-
-- Resize indicator (using XWayland terminal)
-
-- Regions
-
-- Window Switcher
-	- With clients on different workspaces
-	- Use some non-default settings
-		- osd.window-switcher.width
-		- osd.window-switcher.padding
-		- osd.window-switcher.item.padding.x
-		- osd.window-switcher.item.padding.y
-		- osd.window-switcher.item.active.border.width
-
-- Drop shadows
-
-
