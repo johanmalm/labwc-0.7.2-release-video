@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<labwc_config>
+  <core>
+    <gap>5</gap>
+  </core>
+  <placement>
+    <policy>automatic</policy>
+  </placement>
+  <theme>
+    <name>Demo</name>
+    <cornerRadius>6</cornerRadius>
+    <font name="Ubuntu" size="10"/>
+    <dropShadows>yes</dropShadows>
+  </theme>
+  <windowSwitcher show="no"/>
+  <resistance>
+    <screenEdgeStrength>-20</screenEdgeStrength>
+    <windowEdgeStrength>-20</windowEdgeStrength>
+  </resistance>
+  <resize>
+    <popupShow>No</popupShow>
+  </resize>
+  <snapping>
+    <range>5</range>
+    <topMaximize>yes</topMaximize>
+  </snapping>
+  <keyboard>
+    <default/>
+    <keybind key="C-A-t" name.action="Execute" command.action="foot -W 40x12"/>
+    <keybind key="W-t" name.action="Execute" command.action="labwc-tweaks"/>
+    <keybind key="W-z" name.action="Execute" command.action="rofi -show drun"/>
+    <keybind key="W-F7" name.action="Execute" command.action="wf-recorder --output eDP-1"/>
+    <keybind key="W-F8" name.action="Execute" command.action="killall SIGINT wf-recorder"/>
+    <keybind key="W-F11" name.action="ToggleDecorations"/>
+    <keybind key="W-Left" name.action="MoveToEdge" direction.action="left" snapWindows.action="true"/>
+    <keybind key="W-Right" name.action="MoveToEdge" direction.action="right" snapWindows.action="true"/>
+    <keybind key="W-Up" name.action="MoveToEdge" direction.action="up" snapWindows.action="true"/>
+    <keybind key="W-Down" name.action="MoveToEdge" direction.action="down" snapWindows.action="true"/>
+    <keybind key="W-S-Left" name.action="ShrinkToEdge" direction.action="left"/>
+    <keybind key="W-S-Right" name.action="GrowToEdge" direction.action="right"/>
+    <keybind key="W-S-Up" name.action="ShrinkToEdge" direction.action="up"/>
+    <keybind key="W-S-Down" name.action="GrowToEdge" direction.action="down"/>
+    <keybind key="C-W-Left" name.action="SnapToEdge" direction.action="left"/>
+    <keybind key="C-W-Right" name.action="SnapToEdge" direction.action="right"/>
+    <keybind key="C-W-Up" name.action="SnapToEdge" direction.action="up"/>
+    <keybind key="C-W-Down" name.action="SnapToEdge" direction.action="down"/>
+  </keyboard>
+  <mouse>
+    <default/>
+    <context name="Root">
+      <mousebind button="Left" action="Press" name.action="Unfocus"/>
+    </context>
+    <context name="Top">
+      <mousebind button="Left" action="DoubleClick" name.action="ToggleMaximize" direction.action="vertical"/>
+    </context>
+    <context name="Bottom">
+      <mousebind button="Left" action="DoubleClick" name.action="ToggleMaximize" direction.action="vertical"/>
+    </context>
+    <context name="Left">
+      <mousebind button="Left" action="DoubleClick" name.action="ToggleMaximize" direction.action="horizontal"/>
+    </context>
+    <context name="Right">
+      <mousebind button="Left" action="DoubleClick" name.action="ToggleMaximize" direction.action="horizontal"/>
+    </context>
+  </mouse>
+  <libinput>
+    <device>
+      <naturalScroll/>
+    </device>
+  </libinput>
+</labwc_config>
