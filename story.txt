@@ -1,6 +1,6 @@
 # Introduction
 
-TODO: [Some graphic]
+// img: Some graphic
 
 ## What is a Wayland Compositor
 
@@ -25,30 +25,22 @@ and the Compositor (e.g. picom).
 Let us describe what has happened since the last release video at version 0.6.0
 in Nov 2022:
 
-- The code base has nearly doubled in size from 10k lines to 20k (in `src/`)
+- The code base has more than doubled in size from 10k lines to 21k (in `src/`)
 - We have 866 new commits submitted by 56 code contributors
   ...out of which ten contributors submitted >= 10 patches
 
-//TODO: Add LOC graph?
 // https://github.com/labwc/labwc-loc-graph/blob/main/graph.png
 
-The great news is that there is now a set of pretty active developers and some
-are very competent which makes for a good team with peer-review, etc. (not
-including myself in that verdict btw). Also, the wlroots crowd are extremely
-competent including people who contribute to the Linux kernel, Wayland and
-upstream protocols.
+- The 'core team' now has half a dozen active devs/maintainers who author and
+  peer-review code. And of course, we have many more who evaluate ideas, test
+  patches and so on. A big thanks to you all!
 
-// TODO... or a bit more toned down :)
-The 'core team' now has half a dozen active devs/maintainers who author and
-peer-review code. And of course, we have many more who evaluate ideas, test
-patches and so on. A big thanks to you all!
+- We have five devs with full commit access
 
-We have four devs with full commit access and who operate a policy as described
-[here](/link/to/policy)
+- We have grown into a 10ish week release cycle including a 3-week cool-down
+  period
 
-We have grown into a 10ish week release cycle.
-
-// TODO: Consider screenshot of the ganttplay roadmap
+// img: Consider screenshot of the ganttplay roadmap
 
 ## wlroots
 
@@ -58,13 +50,8 @@ doing. And needless to say, wlroots has come long way in the last 18 months too.
 
 # How mature is the compositor?
 
-In our work we focus a lot on stability and code cleanliness, and feel that it is
-reasonably solid in that regard.
-
-In terms of answering the question, let us describe what labwc feels like in
-comparison with using X.Org Server Window Managers like openbox and xfwm4?
-
-In brief, it is simply different; somethings are better and some are worse.
+- To answer that, let us describe what labwc feels like in comparison with using
+  X.Org Server Window Managers like openbox and xfwm4?
 
 ## Normal applications
 
@@ -190,6 +177,9 @@ VIDEOS:
 	- ToggleDecoration
 	- ToggleShade
 
+- Vertical/Horizontal maximize
+- Snap overlay
+
 - Resize indicator (using XWayland terminal)
 
 - Regions
@@ -203,7 +193,6 @@ VIDEOS:
 		- osd.window-switcher.item.padding.y
 		- osd.window-switcher.item.active.border.width
 
-- Drop shadows (if ready in time)
+- Drop shadows
 
-- Snap overlay (if ready in time)
 
