@@ -1,0 +1,2 @@
+ffmpeg -i 208-toggle-shade.mkv -acodec libfaac -vcodec libx264 -t 00:00:08 out.mkv
+ffmpeg -i 208-toggle-shade.mkv -acodec libfaac -vcodec libx264 -ss 00:00:08 out.mkv
